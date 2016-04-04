@@ -40,15 +40,11 @@ namespace DungEon
             if (gameView != null)
             {
 
-                int width = 1280;
-                int height = 720;
-                // Set world dimensions
-                gameView.DesignResolution = new CCSizeI(width, height);
-
-                //gameView.ContentManager.RootDirectory = "Assets/Content";
                 gameView.ContentManager.SearchPaths = new List<string>()
-                {"Images", "Fonts","Sounds"};
-                
+                {"Images", "Fonts","Sounds", "Tiles"};
+
+                //CCScene.SetDefaultDesignResolution(380, 240, CCSceneResolutionPolicy.ShowAll);
+                //gameView.ResolutionPolicy = CCViewResolutionPolicy.ExactFit;
                 CCScene gameScene = new CCScene(gameView);
                 gameScene.AddLayer(new GameStartLayer());
                 gameView.RunWithScene(gameScene);

@@ -3,4 +3,7 @@
   <PropertyGroup>
     <SelectedDevice>VS Emulator 5.7" Marshmallow %286.0.0%29 XHDPI Phone</SelectedDevice>
   </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>C:\Users\Michael\Desktop\DungEon\DungEon\Assets\Content\</ReferencePath>
+  </PropertyGroup>
 </Project>

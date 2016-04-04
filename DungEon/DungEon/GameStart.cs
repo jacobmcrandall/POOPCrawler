@@ -20,19 +20,10 @@ namespace DungEon
             var touchLocation = touches[0].Location;
             //If play is hit
             if (play.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
-            {
-                //Transfer to gameplay scene
-                CCScene gamePlayScene = new CCScene(GameView);
-                gamePlayScene.AddLayer(new GameLayer());
-
-                GameView.Director.ReplaceScene(gamePlayScene);
-            }
+                GameLayer.getNewMap(GameView);
             //If quit is hit
             else if (quit.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
-            {
                 Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-                //System.Exit(0) may work too
-            }
         }
         protected override void AddedToScene()
         {

@@ -1,0 +1,172 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using CocosSharp;
+using Microsoft.Xna.Framework;
+
+namespace DungEon
+{
+    /*
+        TODO : Implement character, player and enemy classes
+        implement a checkSurroundingTies method
+            - Checks surrounding tiles for a property name and value - return a list of these tiles/coords
+
+        - check issue - some ys are negative and don't get checked
+        - identify tile clicks
+        - difference in world coordinates and layer and screen coordinates - lookup and leanrtw
+    */
+    public class GameLayer : CCTileMap
+    {
+        int numLevels = 2; //The number of levels that we have - we load a level 1 through numLevels randomly
+        CCTileMap gameMap;
+        CCEventListenerTouchAllAtOnce touchListener;
+        
+        public GameLayer() : base("level_3.tmx")
+        {
+            touchListener = new CCEventListenerTouchAllAtOnce();
+            touchListener.OnTouchesEnded = handleEndTouches;
+            AddEventListener(touchListener);
+            Schedule(RunGameLogic);
+        }
+
+        //Handle all touches
+        void handleEndTouches(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
+        {
+            var touchLocation = touches[0].PreviousLocation;
+
+            loopTiles();
+            foreach (CCTileMapLayer layer in gameMap.TileLayersContainer.Children)
+            {
+                //world.X = tileDimension * column + tileDimension / 2;
+                //Console.WriteLine("TouchLocationNative : (" + touchLocation.X + " , " + touchLocation.Y + ")");
+                touchLocation = layer.WorldToParentspace(touchLocation); // convert to coordinates based on the tilemap, not the entire game
+                
+                Console.WriteLine("TouchlocationWorldToParentSpace : (" + touchLocation.X + " , " + touchLocation.Y + ")");
+                var tileAtXy = layer.ClosestTileCoordAtNodePosition(touchLocation);
+                CCPoint world = layer.TilePosition(tileAtXy);
+                Console.WriteLine("Row: " + tileAtXy.Row + "  Column: " + tileAtXy.Column);
+                //Console.WriteLine("WorldLocation : (" + world.X + " , " + world.Y + ")");
+                
+                
+                //tileHandler(touchLocation, layer);
+                //touchLocation = layer.WorldToParentspace(touchLocation);
+                //var tileAtXy = layer.ClosestTileCoordAtNodePosition(touchLocation);
+                
+            }
+            
+        }
+
+        void RunGameLogic(float frameTimeInSeconds)
+        {
+            //label.Text = "Num Touches : " + touchCount;
+        }
+
+        //Calls the tileHandler on EVERY map tile
+        void loopTiles()
+        {
+            int tileDimension = (int)gameMap.TileTexelSize.Width;
+            int numberOfColumns = (int)gameMap.MapDimensions.Size.Width;
+            int numberOfRows = (int)gameMap.MapDimensions.Size.Height;
+            CCPointI world = new CCPointI(0, 0);
+            // Tile maps can have multiple layers, so let's loop through all of them:
+            foreach (CCTileMapLayer layer in gameMap.TileLayersContainer.Children)
+            {
+                // Loop through the columns and rows to find all tiles
+                for (int column = 0; column < numberOfColumns; column++)
+                {
+                    // We're going to add tileDimension / 2 to get the position
+                    // of the center of the tile - this will help us in 
+                    // positioning entities, and will eliminate the possibility
+                    // of floating point error when calculating the nearest tile:
+                    world.X = tileDimension * column + tileDimension / 2;
+                    for (int row = 0; row < numberOfRows; row++)
+                    {
+                        // See above on why we add tileDimension / 2
+                        world.Y = tileDimension * row + tileDimension / 2;
+                        CCTileMapCoordinates tileAtXy = layer.ClosestTileCoordAtNodePosition(world);
+                        Console.WriteLine(tileAtXy.Column + tileAtXy.Row);
+                        //tileHandler(world, layer);
+                        layer.RemoveTile(tileAtXy);
+                        var testing = new  CCSprite ("test_char");
+                        testing.Position = world;
+                        testing.ZOrder = 99999;
+                        layer.AddChild(testing);
+                        Console.WriteLine();
+                    }
+                }
+            }
+        }
+
+        //Handles individual tiles at individual layers
+        void tileHandler(CCPoint world, CCTileMapLayer layer)
+        {
+            CCTileMapCoordinates tileAtXy = layer.ClosestTileCoordAtNodePosition(world); // (touchlocation if depending on who passed in)
+            CCTileGidAndFlags info = layer.TileGIDAndFlags(tileAtXy.Column, tileAtXy.Row);
+            Dictionary<string, string> properties = gameMap.TilePropertiesForGID(info.Gid);
+
+            //The following converts the X and Y to the enarest tile CENTER of what we clicked
+            int tileDimension = (int)gameMap.TileTexelSize.Width;
+            world = layer.TilePosition(tileAtXy);
+            //world.X = tileDimension * tileAtXy.Column + tileDimension / 2;
+            //world.Y = tileDimension * tileAtXy.Row + tileDimension / 2;
+
+            //Console.WriteLine("World Location:( " + world.X + " , " + world.Y + " )");
+            Console.WriteLine("Row: " +tileAtXy.Row + "  Column: " + tileAtXy.Column);
+            Console.WriteLine("WORLD X: " + layer.TilePosition(tileAtXy).X + "  WORLD Y: " + layer.TilePosition(tileAtXy).Y);
+            /*
+            if (properties != null)
+                foreach (KeyValuePair<string, string> item in properties)
+                    Console.WriteLine(item.Key + " -> " + item.Value);*/
+
+            if (properties != null && properties.ContainsKey("walkable") && properties["walkable"] == "true")
+            {
+               // Console.WriteLine("You clicked a walkable tile");
+            }
+            if(properties != null && properties.ContainsKey("name") && properties["name"] == "spawn")
+            {
+                Console.WriteLine("Adding player");
+            }
+            if(properties != null && properties.ContainsKey("name") && properties["name"] == "exit")
+            {
+                Console.WriteLine("Adding random map");
+                //addRandomMap();
+            }
+        }
+
+        //Adds a random tilemap
+        void addRandomMap(Boolean firstLoad = false)
+        {
+            //if this isn't the first load the first time loading
+            if (!firstLoad)
+                RemoveChild(gameMap);
+
+            //gameMap = new CCTileMap("level_" + CCRandom.GetRandomInt(1, numLevels) + ".tmx"); // select a random map
+            gameMap = new CCTileMap("level_3.tmx");
+
+            //Make the camera / resolution to the size of the map
+            GameView.DesignResolution = new CCSizeI(
+                                          (int)(gameMap.MapDimensions.Size.Width * gameMap.TileTexelSize.Height)
+                                        , (int)(gameMap.MapDimensions.Size.Height * gameMap.TileTexelSize.Height));
+
+
+            AddChild(gameMap);
+
+        }
+
+        //add items to scene here
+        protected override void AddedToScene()
+        {
+            base.AddedToScene();
+            //addRandomMap(true);
+        }
+        public static CCScene GameScene(CCGameView mainWindow)
+        {
+            var scene = new CCScene(mainWindow);
+            var layer = new GameLayer();
+            scene.AddChild(layer);
+
+            return scene;
+        }
+    }
+}
+
