@@ -2,19 +2,19 @@
 <Paths>
   <Jars></Jars>
   <ResolvedResourceDirectories>
-    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework\library_project_imports\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
-    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework\library_project_imports\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
-    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\CocosSharp.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\Lidgren.Network.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\Michael\Desktop\POOPCrawler\DungEon\DungEon\obj\Debug\__library_projects__\MonoGame.Framework.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>

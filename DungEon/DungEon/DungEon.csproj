@@ -61,7 +61,6 @@
   <ItemGroup>
     <Compile Include="character.cs" />
     <Compile Include="GameStart.cs" />
-    <Compile Include="item.cs" />
     <Compile Include="MainActivity.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,6 +106,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\enemyChar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\wep_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\wep_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\wep_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

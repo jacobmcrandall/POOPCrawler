@@ -23,18 +23,24 @@ namespace DungEon
         int health { get; set; } 
         //Health of character - we were gonna have health functions but I think it might just be easier/ less complicated touse getters/ setters
         int maxHealth { get; } //Max health of character - gets set at initialization
-        GameLayer map;  // the map that this character is placed on
+        public static GameLayer map { get; set; }  // the map that this character is placed on
         //TODO add items class variables once items are implemented
-        
+        public weapon weapon { get; set; }
+        //public bool inCombat { get; set; }
 
-        public character(string spriteString,int setHealth,CCPoint setLocation, GameLayer setMap) : base()
+
+        public character(string spriteString,int setHealth,CCPoint setLocation, weapon equippedWeapon ) : base()
         {
             myChar = new CCSprite(spriteString); //set sprite based on the name of a passed in string
             this.AddChild(myChar); //connect the sprite to the character
             this.Position = setLocation;
             health = setHealth;
             maxHealth = setHealth;
-            map = setMap;
+
+            weapon = equippedWeapon;
+            this.AddChild(weapon);
+            AddChild(weapon);
+            
         }
 
         //returns a list of tiles with a certain property and value - checks up,down,left,right nodes
@@ -70,7 +76,7 @@ namespace DungEon
 
         //helper function for getSurroundingTilesWithProperties - also can be used individually
         //check a single tile if it satisfies a certain condition ie "walkable" == "true"
-        private Boolean checkSingleTileWithProperties(CCTileMapCoordinates checkTile,string property, string value)
+        public static Boolean checkSingleTileWithProperties(CCTileMapCoordinates checkTile,string property, string value)
         {
             CCTileGidAndFlags info;
             Dictionary<string, string> properties;
@@ -106,7 +112,10 @@ namespace DungEon
 
         public void move(CCPoint moveHere)
         {
-            moveOne(moveHere);
+            if (!map.isTileOccupied(map.LayerNamed("Map").ClosestTileCoordAtNodePosition(moveHere)))
+                moveOne(moveHere);
+            else
+                Console.WriteLine("Can't move there");
         }
 
         //move to a specified location
@@ -127,12 +136,15 @@ namespace DungEon
         public void moveOneRandom()
         {
             var walkableTiles = getSurroundingTilesWithProperties(this.Position,"walkable", "true");
-            Random rnd = new Random();
             //get a random tile to moveto
-            CCTileMapCoordinates moveTo = walkableTiles.ElementAt(rnd.Next(walkableTiles.Count));
+            CCTileMapCoordinates moveTo = walkableTiles[CCRandom.GetRandomInt(0,walkableTiles.Count-1)];
             CCPoint moveToWorld = map.LayerNamed("Map").TilePosition(moveTo);
+
             moveToWorld = new CCPoint(moveToWorld.X + map.TileTexelSize.Width / 2, moveToWorld.Y + map.TileTexelSize.Width / 2);
-            moveOne(moveToWorld);
+            if (!map.isTileOccupied(moveTo))
+                moveOne(moveToWorld);
+            else
+                Console.WriteLine("Can't move here");
         }
     }
 }
