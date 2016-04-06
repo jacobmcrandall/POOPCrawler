@@ -20,9 +20,9 @@ namespace DungEon
     {
         
         CCSprite myChar { get; } //Just the visual for my character - static - no animation yet   
-        int health { get; set; } 
+        public int health { get; set; } 
         //Health of character - we were gonna have health functions but I think it might just be easier/ less complicated touse getters/ setters
-        int maxHealth { get; } //Max health of character - gets set at initialization
+        public int maxHealth { get; } //Max health of character - gets set at initialization
         public static GameLayer map { get; set; }  // the map that this character is placed on
         //TODO add items class variables once items are implemented
         public weapon weapon { get; set; }
@@ -45,7 +45,7 @@ namespace DungEon
 
         //returns a list of tiles with a certain property and value - checks up,down,left,right nodes
         //if you're in the upper left hand corner for instance and check for walkable tiles it will return bottom and right coords
-        public List<CCTileMapCoordinates> getSurroundingTilesWithProperties(CCPoint myPosition,string property, string value)
+        public static List<CCTileMapCoordinates> getSurroundingTilesWithProperties(CCPoint myPosition,string property, string value)
         {
             var adjacentCoordinates = new List<CCTileMapCoordinates>();
             foreach (CCTileMapLayer layer in map.TileLayersContainer.Children)
@@ -98,39 +98,47 @@ namespace DungEon
             
         }
 
-        //TODO
-        void attack()
+        //returns true if dead
+        public Boolean attacked(int attackedFor)
         {
-
+            health = health - attackedFor;
+            if(health <= 0) //if dead
+            {
+                //TODO - some sort of death alert / restart the game
+                return true;
+            }
+            return false;
         }
 
-        //TODO - but I'm thinking it might be easier to just interact with the health variable directly in the main gameloop
-        void healUser()
+        public void healFor(int healAmount)
         {
-
+            health = health + healAmount;
+            if (health > maxHealth)
+                health = maxHealth;
         }
 
-        public void move(CCPoint moveHere)
+        //Todo - pathfinding - return a list or Q of move coordinates for the user to execute
+        public List<CCPoint> move(CCPoint goalPoint)
         {
-            if (!map.isTileOccupied(map.LayerNamed("Map").ClosestTileCoordAtNodePosition(moveHere)))
-                moveOne(moveHere);
-            else
-                Console.WriteLine("Can't move there");
+            List<CCPoint> userMoves = new List<CCPoint>();
+            var pathFinder = new PathFinder(map);
+            userMoves = pathFinder.FindPath(Position,goalPoint);
+            //moveOne(goalPoint);
+            return userMoves;
         }
 
         //move to a specified location
         //NOTE: This doesn't check that it is necessarily a one tile move, it checks that it is a valid move of one action
-        void moveOne(CCPoint moveHere)
+        public void moveOne(CCPoint moveHere)
         {
             CCTileMapCoordinates moveHereTile = map.LayerNamed("Map").ClosestTileCoordAtNodePosition(moveHere);
-            if (checkSingleTileWithProperties(moveHereTile, "walkable", "true")) // if the above space is walkable you can move there
+            // if the above space is walkable you can move there and its not occupied by some other entity
+            if (checkSingleTileWithProperties(moveHereTile, "walkable", "true") 
+                && !map.isTileOccupied(map.LayerNamed("Map").ClosestTileCoordAtNodePosition(moveHere))) 
             {
                 this.Position = moveHere;
             }
-            else
-            {
-                Console.WriteLine("Cannot move there, invalid,");
-            }           
+            //else you cannot move there
         }
 
         public void moveOneRandom()
@@ -143,8 +151,7 @@ namespace DungEon
             moveToWorld = new CCPoint(moveToWorld.X + map.TileTexelSize.Width / 2, moveToWorld.Y + map.TileTexelSize.Width / 2);
             if (!map.isTileOccupied(moveTo))
                 moveOne(moveToWorld);
-            else
-                Console.WriteLine("Can't move here");
+            //else can't move
         }
     }
 }
