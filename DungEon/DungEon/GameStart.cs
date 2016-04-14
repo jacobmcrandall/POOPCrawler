@@ -8,7 +8,7 @@ namespace DungEon
     {
         CCSprite play;
         CCSprite quit;
-        public GameStartLayer() : base(CCColor4B.LightGray)
+        public GameStartLayer() : base(CCColor4B.Gray)
         {
             var touchListener = new CCEventListenerTouchAllAtOnce();
             touchListener.OnTouchesEnded = handleEndTouches;
@@ -32,12 +32,12 @@ namespace DungEon
         }
         void AddButtons()
         {
-            play = new CCSprite("play");
+            play = new CCSprite("Play_DungEon");
             play.Position = VisibleBoundsWorldspace.Center;
 
-            quit = new CCSprite("quit");
+            quit = new CCSprite("Quit_DungEon2");
             quit.PositionX = play.PositionX;
-            quit.PositionY = play.PositionY - 200;
+            quit.PositionY = play.PositionY - 160;
 
             AddChild(play);
             AddChild(quit);

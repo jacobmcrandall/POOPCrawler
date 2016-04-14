@@ -15,8 +15,9 @@ namespace DungEon
 {
     [Activity(Label = "DungEon", MainLauncher = true, Icon = "@drawable/icon",
         AlwaysRetainTaskState = true,
+        ScreenOrientation = ScreenOrientation.Landscape,
         LaunchMode = LaunchMode.SingleInstance,
-        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
+        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]//ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
     public class MainActivity : Activity
     {
 
@@ -26,11 +27,21 @@ namespace DungEon
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            //setCurrentImage();
 
+            
             // Get our game view from the layout resource,
             // and attach the view created event to it
             CCGameView gameView = (CCGameView)FindViewById(Resource.Id.GameView);
             gameView.ViewCreated += LoadGame;
+        }
+
+        private void setCurrentImage()
+        {
+            int loading = Resource.Drawable.died;
+            ImageView imageView = (ImageView)FindViewById(Resource.Id.imageDisplay);
+            imageView.SetImageResource(loading);
+            //imageView.SetImageURI("died");
         }
 
         void LoadGame(object sender, EventArgs e)
@@ -42,6 +53,7 @@ namespace DungEon
 
                 gameView.ContentManager.SearchPaths = new List<string>()
                 {"Images", "Fonts","Sounds", "Tiles"};
+                //gameView.ContentManager.RootDirectory = "Content";
 
                 //CCScene.SetDefaultDesignResolution(380, 240, CCSceneResolutionPolicy.ShowAll);
                 //gameView.ResolutionPolicy = CCViewResolutionPolicy.ExactFit;
