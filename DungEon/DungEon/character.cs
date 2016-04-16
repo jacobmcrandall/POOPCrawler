@@ -42,6 +42,19 @@ namespace DungEon
             AddChild(weapon);
             
         }
+        public character(character oldCharacter, CCPoint setLocation) : base()
+        {
+            myChar = oldCharacter.myChar; //set sprite based on the name of a passed in string
+            this.AddChild(myChar); //connect the sprite to the character
+            this.Position = setLocation;
+            health = oldCharacter.health;
+            maxHealth = oldCharacter.maxHealth;
+
+            weapon = oldCharacter.weapon;
+            this.AddChild(weapon);
+            AddChild(weapon);
+
+        }
 
         //returns a list of tiles with a certain property and value - checks up,down,left,right nodes
         //if you're in the upper left hand corner for instance and check for walkable tiles it will return bottom and right coords

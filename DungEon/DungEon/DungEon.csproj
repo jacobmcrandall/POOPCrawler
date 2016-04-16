@@ -75,6 +75,7 @@
     <AndroidAsset Include="Assets\Content\Fonts\MarkerFelt-22.xnb" />
     <AndroidAsset Include="Assets\Content\Tiles\level_1.tmx" />
     <AndroidAsset Include="Assets\Content\Tiles\level_2.tmx" />
+    <AndroidAsset Include="Assets\Content\Tiles\level_3.tmx" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -117,6 +118,15 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\Images\wep_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Play_DungEon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\Quit_DungEon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Content\Images\died.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

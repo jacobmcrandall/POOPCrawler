@@ -38,9 +38,9 @@ namespace DungEon
 
         private void setCurrentImage()
         {
-            int loading = Resource.Drawable.died;
-            ImageView imageView = (ImageView)FindViewById(Resource.Id.imageDisplay);
-            imageView.SetImageResource(loading);
+            //int loading = Resource.Drawable.died;
+            //ImageView imageView = (ImageView)FindViewById(Resource.Id.imageDisplay);
+            //imageView.SetImageResource(loading);
             //imageView.SetImageURI("died");
         }
 
