@@ -27,7 +27,7 @@ namespace DungEon
     */
     public class GameLayer : CCTileMap
     {
-        static int numLevels = 2; //The number of levels that we have - we load a level 1 through numLevels randomly
+        static int numLevels = 6; //The number of levels that we have - we load a level 1 through numLevels randomly
         CCEventListenerTouchAllAtOnce touchListener;
         character user = null; // start off as null - looptiles will spawn
 
@@ -41,11 +41,25 @@ namespace DungEon
 
         //statically loaded - this could be done better - but if you want to add weapons do so here
         List<weapon> availableWeapons = new List<weapon>()
-        {new weapon("wep_1", 2),
-         new weapon("wep_2", 3),
-         new weapon("wep_3", 4)};
+        {   new weapon("wep_1", 2),
+            new weapon("wep_1", 2),
+            new weapon("wep_1", 2),
+            new weapon("wep_2", 3),
+            new weapon("wep_2", 3),
+            new weapon("wep_2", 3),
+            new weapon("wep_3", 4),
+            new weapon("wep_3", 4),
+            new weapon("wep_3", 4)};
 
-        public GameLayer() : base(/*"level_" + CCRandom.GetRandomInt(1, numLevels) + ".tmx"*/"level_2.tmx") // get a random level and load it on initialization
+        //List<String> availableLevels = new List<String>()
+        //{
+        //    "level_3.tmx",
+        //    "level_4.tmx",
+        //    "level_5.tmx",
+        //    "level_6.tmx"
+        //}
+
+        public GameLayer() : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_5.tmx"*/) // get a random level and load it on initialization
         {
             character.map = this;
             //touch listener - calles tileHandler to handle tile touches
@@ -62,15 +76,15 @@ namespace DungEon
             //Add labels to the upper left hand corner
             //Might be better to have a bar with width based on a percentage of health/maxhealth
             userInfo = new CCLabel
-                ("Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack,"arial",10);
-            userInfo.Position = new CCPoint(60, VisibleBoundsWorldspace.UpperRight.Y + 5);
+                ("Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack,"arial",12);
+            userInfo.Position = new CCPoint(70, VisibleBoundsWorldspace.UpperRight.Y + 5);
             userInfo.IsAntialiased = true;
             this.AddChild(userInfo);
 
             //run main game loop - frames happen every 1 second
             Schedule(RunGameLogic,(float)0.5);
         }
-        private GameLayer(character oldUser) : base(/*"level_" + CCRandom.GetRandomInt(1, numLevels) + ".tmx"*/"level_2.tmx") // get a random level and load it on initialization
+        private GameLayer(character oldUser) : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_4.tmx"*/) // get a random level and load it on initialization
         {
             //int tileDimension = (int)TileTexelSize.Width;
             //int numberOfColumns = (int)MapDimensions.Size.Width;
@@ -113,8 +127,8 @@ namespace DungEon
             //Add labels to the upper left hand corner
             //Might be better to have a bar with width based on a percentage of health/maxhealth
             userInfo = new CCLabel
-                ("Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack, "arial", 10);
-            userInfo.Position = new CCPoint(60, VisibleBoundsWorldspace.UpperRight.Y + 5);
+                ("Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack, "arial", 12);
+            userInfo.Position = new CCPoint(70, VisibleBoundsWorldspace.UpperRight.Y + 5);
             userInfo.IsAntialiased = true;
             this.AddChild(userInfo);
 
@@ -126,6 +140,16 @@ namespace DungEon
         void handleEndTouches(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
         {
             var touchLocation = touches[0].Location; //get our touch location in WORLD coords
+            if (ifdied && died.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
+            {
+                died.RotationX = 30;
+                //CCScene mainWindow = new CCScene(GameView);
+                //GameStartLayer.GameStartLayerScene(mainWindow);
+                //mainWindow.RunWithScene(gameScene);
+                GameLayer.getNewMap(GameView);
+                //Window.DefaultDirector.ReplaceScene(GameLayer.GameScene(Window));
+                //Scene.AddChild(layer);
+            }
             foreach (CCTileMapLayer layer in TileLayersContainer.Children) // check every layer that was touched
             {
                 var tileCoordinates = layer.ClosestTileCoordAtNodePosition(touchLocation); //get the closest tile to our touch
@@ -133,16 +157,7 @@ namespace DungEon
 
                 
 
-                if (ifdied && died.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
-                {
-                    died.RotationX = 30;
-                    //CCScene mainWindow = new CCScene(GameView);
-                    //GameStartLayer.GameStartLayerScene(mainWindow);
-                    //mainWindow.RunWithScene(gameScene);
-                    GameLayer.getNewMap(GameView);
-                    //Window.DefaultDirector.ReplaceScene(GameLayer.GameScene(Window));
-                    //Scene.AddChild(layer);
-                }
+                
 
                 //Center our coordinates to the center of our tile
                 world = new CCPoint(world.X + TileTexelSize.Width / 2, world.Y + TileTexelSize.Width / 2);
@@ -186,7 +201,7 @@ namespace DungEon
                     CCTileGidAndFlags info = layer.TileGIDAndFlags(tileAtXy.Column, tileAtXy.Row);
                     //CCTileMapCoordinates positionAsTile = LayerNamed("Map").ClosestTileCoordAtNodePosition(enemy.Position);
                     Dictionary<string, string> properties = TilePropertiesForGID(info.Gid);
-                    if (properties != null && properties.ContainsKey("name") && properties["name"] == "exit" && enemiesList.Count == 0)
+                    if (properties != null && properties.ContainsKey("name") && properties["name"] == "spawn" && enemiesList.Count == 0)
                     {
                         GameLayer.getNewMap(GameView, user);
                     }
@@ -265,7 +280,7 @@ namespace DungEon
                     userMoves = user.move(world); //get new pathfind
             }
             //Spawning in the user - only happens once - not called by user
-            if (user == null && calledByLoop && properties != null && properties.ContainsKey("name") && properties["name"] == "spawn")
+            if (user == null && calledByLoop && properties != null && properties.ContainsKey("name") && properties["name"] == "exit")
             {
                 if(oldUser==null)
                 {
@@ -289,7 +304,7 @@ namespace DungEon
             //TODO - handle user deaths here
             //var touch = new CCTouch;
             //died = new CCTextField("You died", "arial", 10);
-            died = new CCSprite("died");
+            died = new CCSprite("PlayAgain_DungEon3");
             died.Position = VisibleBoundsWorldspace.Center;
 
             ifdied = true;
@@ -300,17 +315,15 @@ namespace DungEon
 
             Console.WriteLine("You died");
         }
-        /**void handleDiedTouch(CCTouch touching)
-        {
-            //If play is hit
-            if (play.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
-                GameLayer.getNewMap(GameView);
-            //If quit is hit
-            else if (quit.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
-                Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
-        }**/
+
         void enemyDeath(character enemy)
         {
+            if(enemy.weapon.attack > user.weapon.attack)
+            {
+                user.RemoveChild(user.weapon);
+                user.weapon = enemy.weapon;
+                user.AddChild(user.weapon);
+            }
             enemiesList.Remove(enemy);
             this.RemoveChild(enemy);
             //TODO - drop item
@@ -350,7 +363,7 @@ namespace DungEon
 
                     randomLocation = LayerNamed("Map").TilePosition(randomTile);
                     randomLocation = new CCPointI((int)randomLocation.X + tileDimension / 2, (int)randomLocation.Y + tileDimension / 2);
-                    enemies.Add(new character("enemyChar", 5, randomLocation, availableWeapons[CCRandom.GetRandomInt(0,availableWeapons.Count-1)]  ));
+                    enemies.Add(new character("enemyChar", 5, randomLocation, availableWeapons[i+1] ));//CCRandom.GetRandomInt(0,availableWeapons.Count-1)]  ));
                 }
                 else
                     i--;

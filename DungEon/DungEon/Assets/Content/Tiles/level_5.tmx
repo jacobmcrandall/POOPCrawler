@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="12" tilewidth="16" tileheight="16" nextobjectid="1">
  <properties>
-  <property name="numEnemies" type="int" value="4"/>
+  <property name="numEnemies" type="int" value="6"/>
  </properties>
  <tileset firstgid="1" name="sewer_1" tilewidth="16" tileheight="16" tilecount="352" columns="16">
   <image source="sewer_1.png" width="256" height="352"/>
@@ -26,25 +26,24 @@
   <tile id="3">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="4">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="5">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="6">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="7">
@@ -62,43 +61,36 @@
   <tile id="9">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="10">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="11">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="12">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="13">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="14">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="15">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="16">
@@ -122,25 +114,24 @@
   <tile id="19">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="20">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="21">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="22">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="23">
@@ -158,43 +149,36 @@
   <tile id="25">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="26">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="27">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="28">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="29">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="30">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="31">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="32">
@@ -218,79 +202,69 @@
   <tile id="35">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="36">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="37">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="38">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="39">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="40">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="41">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="42">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="43">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="44">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="45">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="46">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="47">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="48">
@@ -314,79 +288,68 @@
   <tile id="51">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="52">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="53">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="54">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="55">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="56">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="57">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="58">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="59">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="60">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="61">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="62">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="63">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="64">
@@ -416,73 +379,61 @@
   <tile id="68">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="69">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="70">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="71">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="72">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="73">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="74">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="75">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="76">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="77">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="78">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="79">
    <properties>
     <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
   <tile id="80">
@@ -493,7 +444,7 @@
   </tile>
   <tile id="81">
    <properties>
-    <property name="name" value="pipe"/>
+    <property name="name" value=""/>
     <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
@@ -817,7 +768,7 @@
   </tile>
   <tile id="135">
    <properties>
-    <property name="name" value="slime"/>
+    <property name="name" value=""/>
     <property name="walkable" type="bool" value="false"/>
    </properties>
   </tile>
@@ -2120,66 +2071,50 @@
  </tileset>
  <layer name="Map" width="24" height="12">
   <data encoding="csv">
-1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+1,2,2,2,2,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,3,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
 17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
 17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,
-33,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,35
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+17,18,18,18,18,18,18,18,18,18,18,0,0,0,18,18,18,18,18,18,18,18,18,19,
+33,34,34,34,34,34,34,34,34,34,34,0,0,0,34,34,34,34,34,34,34,34,34,35
 </data>
  </layer>
- <layer name="Sewer" width="24" height="12">
+ <layer name="Water" width="24" height="12">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,182,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer name="Mold" width="24" height="12" opacity="0.59">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,123,122,0,0,123,122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,123,122,0,0,0,0,136,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,136,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,2684354682,0,0,0,0,0,0,0,0,136,0,0,0,0,
-0,0,0,2684354682,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,123,122,0,0,0,0,0,122,182,182,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,182,182,182,0,0,0,0,0,0,0,0,
-122,0,0,0,0,0,0,0,0,0,0,0,0,182,182,182,0,0,0,0,0,0,0,123,
-122,0,0,0,0,0,0,0,0,0,0,0,0,182,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1610612881,193,2684354705,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer name="Objects" width="24" height="12">
   <data encoding="csv">
-0,2684354682,0,2684354682,2684354682,0,0,0,0,2684354682,2684354682,0,0,0,0,2684354682,0,2684354682,0,0,2684354682,0,0,0,
-0,0,9,0,0,0,182,166,0,0,166,0,0,0,0,0,182,182,46,47,48,0,0,123,
-122,0,24,0,0,0,0,166,0,0,166,0,0,0,0,0,182,182,62,63,64,0,0,0,
-0,0,2684354682,0,0,0,182,182,0,0,166,0,182,0,0,0,182,182,78,79,80,0,0,123,
-122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,182,0,0,0,0,182,0,
-122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,182,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,182,0,0,0,0,182,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,182,182,182,182,0,182,0,0,0,0,0,123,
-122,0,0,0,182,182,0,0,0,0,0,182,182,182,182,182,0,182,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,182,182,182,0,182,0,9,0,0,0,0,
-122,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684354682,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,9,0,0,
+0,0,0,0,0,0,0,0,0,0,6,2684354612,2684354612,2684354612,38,0,0,0,0,0,0,25,0,0,
+0,0,0,0,0,0,0,0,0,182,22,85,86,87,54,182,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,182,0,182,102,182,0,182,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,24,0,0,0,6,2684354612,2684354612,2684354612,38,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,182,22,85,86,87,54,182,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,182,0,182,102,182,0,182,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
 </map>

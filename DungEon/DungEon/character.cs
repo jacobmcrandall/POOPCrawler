@@ -118,6 +118,7 @@ namespace DungEon
             if(health <= 0) //if dead
             {
                 //TODO - some sort of death alert / restart the game
+                health = 0;
                 return true;
             }
             return false;
