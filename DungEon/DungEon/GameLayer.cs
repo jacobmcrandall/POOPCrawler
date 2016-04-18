@@ -34,6 +34,8 @@ namespace DungEon
         bool ifdied = false;
         CCSprite died;
 
+        int level=0;
+
         List<character> enemiesList = new List<character>();
         List<CCPoint> userMoves = new List<CCPoint>();
         //UI for the user
@@ -84,7 +86,7 @@ namespace DungEon
             //run main game loop - frames happen every 1 second
             Schedule(RunGameLogic,(float)0.5);
         }
-        private GameLayer(character oldUser) : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_4.tmx"*/) // get a random level and load it on initialization
+        private GameLayer(character oldUser, int prevLevel) : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_4.tmx"*/) // get a random level and load it on initialization
         {
             //int tileDimension = (int)TileTexelSize.Width;
             //int numberOfColumns = (int)MapDimensions.Size.Width;
@@ -108,6 +110,11 @@ namespace DungEon
             //        }
             //    }
             //}
+            foreach (weapon weapon in availableWeapons)
+            {
+                weapon.attack+=prevLevel;
+            }
+            level=prevLevel+1;
             character.map = this;
             //user = new character("userChar", oldUser.health, world, user.weapon);
             //new character("userChar", 20, world, availableWeapons[0]);
@@ -203,7 +210,7 @@ namespace DungEon
                     Dictionary<string, string> properties = TilePropertiesForGID(info.Gid);
                     if (properties != null && properties.ContainsKey("name") && properties["name"] == "spawn" && enemiesList.Count == 0)
                     {
-                        GameLayer.getNewMap(GameView, user);
+                        GameLayer.getNewMap(GameView, user, level);
                     }
                 }
             }
@@ -349,7 +356,7 @@ namespace DungEon
             int numberOfRows = (int)MapDimensions.Size.Height;
             CCTileMapCoordinates randomTile;
             CCPoint randomLocation;
-            for (int i =0; i < Int32.Parse(MapPropertyNamed("numEnemies")); i++)
+            for (int i =0; i < (Int32.Parse(MapPropertyNamed("numEnemies"))+level); i++)
             {   
                 int randCol = CCRandom.GetRandomInt(0, numberOfColumns - 1);
                 int randRow = CCRandom.GetRandomInt(0, numberOfRows - 1);
@@ -422,10 +429,10 @@ namespace DungEon
             gameView.Director.ReplaceScene(gamePlayScene);
         }
         //Carry user over to next level
-        private static void getNewMap(CCGameView gameView, character user)
+        private static void getNewMap(CCGameView gameView, character user, int level)
         {
             CCScene gamePlayScene = new CCScene(gameView);
-            gamePlayScene.AddLayer(new GameLayer(user));
+            gamePlayScene.AddLayer(new GameLayer(user, level));
             gameView.Director.ReplaceScene(gamePlayScene);
         }
         //add items to scene here

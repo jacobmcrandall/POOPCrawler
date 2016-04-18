@@ -77,7 +77,6 @@
     <AndroidAsset Include="Assets\Content\Tiles\level_2.tmx" />
     <AndroidAsset Include="Assets\Content\Tiles\level_3.tmx" />
     <AndroidAsset Include="Assets\Content\Tiles\level_4.tmx" />
-    <AndroidAsset Include="Assets\Content\Images\PlayAgain_DungEon2.ai" />
     <AndroidAsset Include="Assets\Content\Tiles\level_5.tmx" />
     <AndroidAsset Include="Assets\Content\Tiles\level_6.tmx" />
     <None Include="packages.config" />
