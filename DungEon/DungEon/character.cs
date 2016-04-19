@@ -42,6 +42,7 @@ namespace DungEon
             AddChild(weapon);
             
         }
+        //create new character based on old in new location
         public character(character oldCharacter, CCPoint setLocation) : base()
         {
             myChar = oldCharacter.myChar; //set sprite based on the name of a passed in string

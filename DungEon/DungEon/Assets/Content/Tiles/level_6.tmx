@@ -121,14 +121,14 @@
   </tile>
   <tile id="19">
    <properties>
-    <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="name" value="floorTile"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="20">
    <properties>
-    <property name="name" value=""/>
-    <property name="walkable" type="bool" value="false"/>
+    <property name="name" value="floorTile"/>
+    <property name="walkable" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="21">

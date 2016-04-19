@@ -52,14 +52,8 @@ namespace DungEon
             new weapon("wep_3", 4),
             new weapon("wep_3", 4),
             new weapon("wep_3", 4)};
+        //^Each character needed it's own CCSprite to go with a weapon, only one instance of a CCSprite shows in game
 
-        //List<String> availableLevels = new List<String>()
-        //{
-        //    "level_3.tmx",
-        //    "level_4.tmx",
-        //    "level_5.tmx",
-        //    "level_6.tmx"
-        //}
 
         public GameLayer() : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_5.tmx"*/) // get a random level and load it on initialization
         {
@@ -88,38 +82,14 @@ namespace DungEon
         }
         private GameLayer(character oldUser, int prevLevel) : base("level_" + CCRandom.GetRandomInt(3, numLevels) + ".tmx"/*"level_4.tmx"*/) // get a random level and load it on initialization
         {
-            //int tileDimension = (int)TileTexelSize.Width;
-            //int numberOfColumns = (int)MapDimensions.Size.Width;
-            //int numberOfRows = (int)MapDimensions.Size.Height;
-            //CCPointI world = new CCPointI(0, 0);
-            //foreach (CCTileMapLayer layer in TileLayersContainer.Children)
-            //{
-            //    // Loop through the columns and rows to find all tiles
-            //    for (int column = 0; column < numberOfColumns; column++)
-            //    {
-            //        // We're going to add tileDimension / 2 to get the position
-            //        // of the center of the tile - this will help us in 
-            //        // positioning entities, and will eliminate the possibility
-            //        // of floating point error when calculating the nearest tile:
-            //        world.X = tileDimension * column + tileDimension / 2;
-            //        for (int row = 0; row < numberOfRows; row++)
-            //        {
-            //            // See above on why we add tileDimension / 2
-            //            world.Y = tileDimension * row + tileDimension / 2;
-            //            tileHandler(world, layer, true);
-            //        }
-            //    }
-            //}
+            //Enemy weapons are stronger based on level
             foreach (weapon weapon in availableWeapons)
             {
                 weapon.attack+=prevLevel;
             }
             level=prevLevel+1;
             character.map = this;
-            //user = new character("userChar", oldUser.health, world, user.weapon);
-            //new character("userChar", 20, world, availableWeapons[0]);
-            //user.Position = world;
-            //Layer.AddChild(user);
+
             //touch listener - calles tileHandler to handle tile touches
             touchListener = new CCEventListenerTouchAllAtOnce();
             touchListener.OnTouchesEnded = handleEndTouches;
@@ -131,7 +101,7 @@ namespace DungEon
             foreach (character enemy in enemiesList)
                 this.AddChild(enemy);
 
-            //Add labels to the upper left hand corner
+            //Add labels to the lower left hand corner
             //Might be better to have a bar with width based on a percentage of health/maxhealth
             userInfo = new CCLabel
                 ("Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack, "arial", 12);
@@ -139,15 +109,15 @@ namespace DungEon
             userInfo.IsAntialiased = true;
             this.AddChild(userInfo);
 
-            //run main game loop - frames happen every 1 second
-            Schedule(RunGameLogic, (float)0.5);
+            //run main game loop - frames happen every 0.25 second
+            Schedule(RunGameLogic, (float)0.25);
         }
 
         //Handle all touches
         void handleEndTouches(System.Collections.Generic.List<CCTouch> touches, CCEvent touchEvent)
         {
             var touchLocation = touches[0].Location; //get our touch location in WORLD coords
-            if (ifdied && died.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))
+            if (ifdied && died.BoundingBoxTransformedToWorld.ContainsPoint(touchLocation))//Play Again clicked create new map at lvl 0
             {
                 died.RotationX = 30;
                 //CCScene mainWindow = new CCScene(GameView);
@@ -162,15 +132,12 @@ namespace DungEon
                 var tileCoordinates = layer.ClosestTileCoordAtNodePosition(touchLocation); //get the closest tile to our touch
                 var world = layer.TilePosition(tileCoordinates); //translate this tile to WORLD coordinates
 
-                
-
-                
 
                 //Center our coordinates to the center of our tile
                 world = new CCPoint(world.X + TileTexelSize.Width / 2, world.Y + TileTexelSize.Width / 2);
                 tileHandler(world, layer, null);
             }
-            
+            //update after attacks in tileHandler
             userInfo.Text = "Health: " + user.health + "/" + user.maxHealth + "    Attack : " + user.weapon.attack;
         }
 
@@ -184,10 +151,11 @@ namespace DungEon
                 //TODO - call user.MoveOne() - for each item in an array of moveOne calls - generated by our path finding algorithm
 
                 user.moveOne(userMoves[0]);
-                foreach (character enemy in enemiesList)
+
+                foreach (character enemy in enemiesList) //since game is turned based this handles attacks after user walks up to enemy
                 {
                     CCTileMapCoordinates positionAsTile = LayerNamed("Map").ClosestTileCoordAtNodePosition(enemy.Position);
-                    if (!isUserNear(positionAsTile)) //dont do twice
+                    if (!isUserNear(positionAsTile))
                         enemy.moveOneRandom();
                     else
                     {
@@ -208,6 +176,8 @@ namespace DungEon
                     CCTileGidAndFlags info = layer.TileGIDAndFlags(tileAtXy.Column, tileAtXy.Row);
                     //CCTileMapCoordinates positionAsTile = LayerNamed("Map").ClosestTileCoordAtNodePosition(enemy.Position);
                     Dictionary<string, string> properties = TilePropertiesForGID(info.Gid);
+
+                    //ensure user is on exit tile and no enemies remain before going to next level
                     if (properties != null && properties.ContainsKey("name") && properties["name"] == "spawn" && enemiesList.Count == 0)
                     {
                         GameLayer.getNewMap(GameView, user, level);
@@ -261,7 +231,6 @@ namespace DungEon
                 //if tile has an enemy and user is near it
                 if(isTileOccupied(tileAtXy) && isUserNear(tileAtXy))
                 {
-                    //character enemy = getEnemyAt(tileAtXy);
                     character attackedEnemy = getEnemyAt(tileAtXy);
                     if (attackedEnemy.attacked(user.weapon.attack))
                         enemyDeath(attackedEnemy);
@@ -299,32 +268,22 @@ namespace DungEon
                     user = new character(oldUser, world);
                     layer.AddChild(user);                }
             }
-            //Exiting the map
-            //if (!calledByLoop && properties != null && properties.ContainsKey("name") && properties["name"] == "exit" && enemiesList.Count == 0)
-            //{
-            //    GameLayer.getNewMap(GameView);
-            //}
         }
 
         void userDeath()
         {
-            //TODO - handle user deaths here
-            //var touch = new CCTouch;
-            //died = new CCTextField("You died", "arial", 10);
+            //Handle user deaths here
             died = new CCSprite("PlayAgain_DungEon3");
             died.Position = VisibleBoundsWorldspace.Center;
 
             ifdied = true;
-            //died.TouchEnded() = handleDiedTouch;
-
 
             AddChild(died);
-
-            Console.WriteLine("You died");
         }
 
         void enemyDeath(character enemy)
         {
+            //give user enemy weapon if it's better
             if(enemy.weapon.attack > user.weapon.attack)
             {
                 user.RemoveChild(user.weapon);
